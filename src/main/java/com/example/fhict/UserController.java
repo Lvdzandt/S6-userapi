@@ -1,9 +1,6 @@
 package com.example.fhict;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,14 +14,22 @@ public class UserController {
         this.repo = repo;
     }
 
+    @CrossOrigin(origins = "http://localhost:8083")
     @PostMapping("/")
-    public User postUSer(User user){
+    public User postUSer(@RequestBody User user){
         return repo.save(user);
     }
 
+    @CrossOrigin(origins = "http://localhost:8083")
     @GetMapping("/")
     public List<User> all(){
         return repo.findAll();
     }
 
+
+    @CrossOrigin(origins = "http://localhost:8083")
+    @GetMapping("/hw")
+    public String hw(){
+        return "hello world";
+    }
 }

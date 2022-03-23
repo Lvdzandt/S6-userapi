@@ -7,7 +7,6 @@ RUN mvn -f /home/app/pom.xml clean package
 # Package stage
 #
 FROM openjdk:17-alpine
-VOLUME /tmp
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /app.jar"]
+COPY --from=build /home/app/target/fhict-0.0.1-SNAPSHOT.jar /usr/local/lib/fhict.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/usr/local/lib/fhict.jar"]
