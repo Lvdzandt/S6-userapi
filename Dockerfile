@@ -8,5 +8,5 @@ RUN mvn -f /home/app/pom.xml clean package
 #
 FROM openjdk:17-alpine
 COPY --from=build /home/app/target/fhict-0.0.1-SNAPSHOT.jar /usr/local/lib/fhict.jar
-EXPOSE 8080
+EXPOSE 8081
 ENTRYPOINT ["java","-jar","/usr/local/lib/fhict.jar"]

@@ -1,5 +1,6 @@
 package com.example.fhict;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,20 +17,21 @@ public class UserController {
 
     @CrossOrigin(origins = "http://localhost:8083")
     @PostMapping("/")
-    public User postUSer(@RequestBody User user){
+    public User postUser(@RequestBody User user){
         return repo.save(user);
     }
 
-    @CrossOrigin(origins = "http://localhost:8083")
-    @GetMapping("/")
-    public List<User> all(){
-        return repo.findAll();
+    @CrossOrigin(origins = {"http://localhost:8083","http://localhost:9080"})
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable(value = "id") int id){
+        User result = repo.findUserById(id);
+        return ResponseEntity.ok(result);
     }
 
-
-    @CrossOrigin(origins = "http://localhost:8083")
-    @GetMapping("/hw")
-    public String hw(){
-        return "hello world";
+    @CrossOrigin(origins = {"http://localhost:8083","http://localhost:9080"})
+    @DeleteMapping({"/{id}"})
+    public ResponseEntity<User> deleteUserById(@PathVariable(value = "id")int id){
+        User deleted = repo.deleteUserById(id);
+        return ResponseEntity.ok(deleted);
     }
 }
