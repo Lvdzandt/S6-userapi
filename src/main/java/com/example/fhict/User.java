@@ -1,6 +1,9 @@
 package com.example.fhict;
 
+
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -9,6 +12,8 @@ public class User {
     private String name;
     private String password;
     private String description;
+    @OneToMany(mappedBy = "user")
+    private Set<SubReddit> subRedditSet;
     private int profilepicture;
 
     public String getDescription() {
