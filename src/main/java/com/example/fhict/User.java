@@ -12,8 +12,6 @@ public class User {
     private String name;
     private String password;
     private String description;
-    @OneToMany(mappedBy = "user")
-    private Set<SubReddit> subRedditSet;
     private int profilepicture;
 
     public String getDescription() {
