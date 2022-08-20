@@ -15,10 +15,6 @@ public class UserController {
         this.repo = repo;
     }
 
-    @org.springframework.kafka.annotation.KafkaListener(topics = "topic_1",groupId = "groupId")
-    void listener(String data){
-        System.out.println("listener: " + data);
-    }
 
     @CrossOrigin(origins = {"http://localhost:8083","http://localhost:8080"})
     @PostMapping("/")
